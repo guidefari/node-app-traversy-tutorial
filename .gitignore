@@ -3,6 +3,8 @@
 .cache
 node_modules
 yarn-error.log
+*.env
+.env*
 
 # Build directory
 /public
@@ -14,3 +16,5 @@ yarn-error.log
 now.json
 .yarn/releases/yarn-1.22.4.js
 .yarnrc
+config/config.env
+*.env
