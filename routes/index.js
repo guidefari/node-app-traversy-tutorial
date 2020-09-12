@@ -14,7 +14,7 @@ router.get('/', ensureGuest, (req, res) =>{
 
 // @desc   Login/Landing page
 // @route  GET /
-wrouter.get('/dashboard', ensureAuth, async (req, res) =>{
+router.get('/dashboard', ensureAuth, async (req, res) =>{
     try {
         const stories = await Story.find({user: req.user.id}).lean()
         res.render('dashboard', {
