@@ -30,12 +30,21 @@ if (process.env.NODE_ENV === 'development'){
 }
 
 // Handlebars Helpers
-const { formatDate } = require('./helpers/hbs')
+const { formatDate, stripTags, truncate, editIcon } = require('./helpers/hbs')
 
 // Handlebars
-app.engine('.hbs', exphbs({helpers: {
-  formatDate,
-}, defaultLayout: 'main', extname: '.hbs'}))
+app.engine('.hbs', 
+exphbs({
+  helpers: {
+    formatDate,
+    stripTags,
+    truncate,
+    editIcon
+  }, 
+  defaultLayout: 'main',
+  extname: '.hbs'
+  })
+)
 app.set('view engine', '.hbs')
 
 // Sessions
@@ -51,6 +60,12 @@ app.use(
 // Passport Middlewear
 app.use(passport.initialize())
 app.use(passport.session())
+
+// Set global var
+app.use(function (req, res, next) {
+  res.locals.user = req.user || null
+  next()
+})
 
 
 // Static folder
