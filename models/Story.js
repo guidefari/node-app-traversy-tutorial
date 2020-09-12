@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const UserSchema = new mongoose.Schema({
+const StorySchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
@@ -13,12 +13,12 @@ const UserSchema = new mongoose.Schema({
     status: {
         type: String,
         required: true,
-        default: public,
+        default: 'public',
         enum: ['public', 'private']
     },
     user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: user
+        ref: 'User'
     },
     createdAt: {
         type: Date,
